@@ -60,14 +60,14 @@
 		<div class="card">
             <div class="card-header"><i class="glyphicon glyphicon-picture"></i> View Uploaded Files</div>
             <div class="card-body" style="overflow-y: scroll">
-            	<div class="card-columns">
+            	<div class="card-columns" id="gridimage">
 					<?php
                     $directory = 'uploads/thumb';
                     $scanned_directory = array_diff(scandir($directory), array('..', '.'));
                     foreach($scanned_directory as $img){
                     ?>
                     <div class="card">
-                       <a href="uploads/<?php echo $img; ?>" data-fancybox="true"> <img src="uploads/thumb/<?php echo $img; ?>" alt="<?php echo $img; ?>" class="img-thumbnail"></a>
+                       <a href="uploads/<?php echo $img; ?>" data-fancybox="true"> <img src="uploads/thumb/<?php echo $img; ?>" alt="<?php echo $img; ?>" class="card-img-top"></a>
                         <div class="card-body">
                             <a href="index.php?img=<?php echo $img; ?>" class="btn btn-block btn-danger"><i class="fa fa-trash"></i></a>
                         </div>
@@ -104,7 +104,8 @@
 	 /* Add Files Script*/
 	 myDropzone.on("success", function(file, message){
 		$("#msg").html(message);
-		setTimeout(function(){window.location.href="index.php"},800);
+		$('#gridimage').load(document.URL +  ' #gridimage');
+		 //setTimeout(function(){window.location.href="index.php"},800);
 	 });
 	 
 	 myDropzone.on("error", function (data) {
